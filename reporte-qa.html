@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Calidad QA - Conversor Temperatura</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 24px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        h1 { margin-top: 0; color: #1a202c; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; }
+        h2 { color: #2d3748; margin-top: 28px; }
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .badge-danger { background: #fed7d7; color: #9b2c2c; }
+        .badge-success { background: #c6f6d5; color: #22543d; }
+        .metric-card {
+            display: flex;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .metric {
+            flex: 1;
+            padding: 16px;
+            background: #edf2f7;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .metric-number { font-size: 1.8em; font-weight: bold; color: #2b6cb0; }
+        .metric-label { font-size: 0.85em; color: #4a5568; margin-top: 4px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        th, td {
+            padding: 12px 14px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        th { background: #edf2f7; }
+        pre {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.85em;
+        }
+        .footer { margin-top: 30px; font-size: 0.8em; color: #718096; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reporte de Calidad QA</h1>
+        <p><strong>Generado:</strong> 2026-09-06 11:56:31 | <strong>Proyecto:</strong> Conversor de Temperatura</p>
+
+        <div style="margin: 20px 0;">
+            <span style="font-size: 1.2em; font-weight: 600; margin-right: 12px;">Veredicto Final:</span>
+            <span class="badge badge-danger">REQUIERE CORRECCIÓN</span>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric">
+                <div class="metric-number">PASÓ</div>
+                <div class="metric-label">Pruebas Funcionales</div>
+            </div>
+            <div class="metric">
+                <div class="metric-number">53.15%</div>
+                <div class="metric-label">Cobertura de Código</div>
+            </div>
+            <div class="metric">
+                <div class="metric-number">52</div>
+                <div class="metric-label">Líneas sin probar</div>
+            </div>
+        </div>
+
+        <h2>Auditoría de Seguridad Básica</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Categoría</th>
+                    <th>Detalle / Hallazgo</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr>
+            <td><strong>🔑 Secreto expuesto</strong></td>
+            <td>Archivo .env contiene claves API activas (riesgo si se comparte).</td>
+            <td><span style="color: #dc3545; font-weight: bold;">ADVERTENCIA</span></td>
+        </tr>
+        
+        <tr>
+            <td><strong>🚪 Manejo de excepciones</strong></td>
+            <td>Bloque genérico 'except Exception:' detectado en valida.py:25.</td>
+            <td><span style="color: #dc3545; font-weight: bold;">ADVERTENCIA</span></td>
+        </tr>
+        
+        <tr>
+            <td><strong>🧪 Validación de entradas</strong></td>
+            <td>Validación robusta activa en _validar_valor (rechazo de NaN, Inf, booleanos y bajo cero absoluto).</td>
+            <td><span style="color: #28a745; font-weight: bold;">APROBADO</span></td>
+        </tr>
+        
+            </tbody>
+        </table>
+
+        <h2>Detalle de Cobertura</h2>
+        <p>Líneas sin cubrir en <code>conversor_temperatura.py</code>: 
+           <code>29, 32, 59, 67, 76, 90, 91, 92, 93, 94, 102, 145, 155, 156, 157, 158, 159, 160, 161, 162, 163, 165, 166, 167, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 191, 192, 193, 194, 195, 196, 200</code>
+        </p>
+
+        <h2>Salida de Pytest</h2>
+        <pre><code>============================= test session starts =============================
+platform win32 -- Python 3.13.14, pytest-9.1.1, pluggy-1.6.0 -- C:\PryCursoIA\Modulo_2\curso-mcp-Ruben\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.13.14', 'Platform': 'Windows-11-10.0.26200-SP0', 'Packages': {'pytest': '9.1.1', 'pluggy': '1.6.0'}, 'Plugins': {'anyio': '4.14.2', 'cov': '7.1.0', 'json-report': '1.5.0', 'metadata': '3.1.1'}}
+rootdir: C:\PryCursoIA\Modulo_2\curso-mcp-Ruben
+configfile: pyproject.toml
+plugins: anyio-4.14.2, cov-7.1.0, json-report-1.5.0, metadata-3.1.1
+collecting ... collected 11 items
+
+test_conversor.py::test_celsius_fahrenheit_bidireccional PASSED          [  9%]
+test_conversor.py::test_celsius_kelvin_bidireccional PASSED              [ 18%]
+test_conversor.py::test_redondeo_dos_decimales PASSED                    [ 27%]
+test_conversor.py::test_rechazo_kelvin_menor_cero PASSED                 [ 36%]
+test_conversor.py::test_caso_borde_valor_no_numerico PASSED              [ 45%]
+test_conversor.py::test_caso_borde_mismo_valor_origen_destino PASSED     [ 54%]
+test_conversor.py::test_caso_borde_numeros_negativos_validos PASSED      [ 63%]
+tests/test_integracion.py::test_flujo_completo_conversion PASSED         [ 72%]
+tests/test_unitario.py::test_convertir_temperatura_celsius_a_fahrenheit PASSED [ 81%]
+tests/test_unitario.py::test_convertir_temperatura_texto_error PASSED    [ 90%]
+tests/test_unitario.py::test_convertir_temperatura_kelvin_negativo PASSED [100%]
+
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.13.14-final-0 _______________
+
+Coverage JSON written to file C:\PryCursoIA\Modulo_2\curso-mcp-Ruben\.cov_temp.json
+============================= 11 passed in 0.33s ==============================
+
+</code></pre>
+
+        <div class="footer">
+            Reporte generado automáticamente por la skill qa-report
+        </div>
+    </div>
+</body>
+</html>

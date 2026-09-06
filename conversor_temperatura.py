@@ -4,6 +4,7 @@ Descripción: Conversor entre escalas de temperatura (Celsius, Fahrenheit, Kelvi
              siguiendo la especificación definida en clase-sdd/spec_manual.md.
 """
 
+import math
 from typing import Union
 
 # Constantes de referencia
@@ -33,13 +34,18 @@ def _normalizar_escala(escala: str) -> str:
 
 
 def _validar_valor(valor: Union[int, float, str]) -> float:
-    """Valida y castea el valor a float manejando valores no numéricos con un error claro."""
+    """Valida y castea el valor a float manejando valores no numéricos, NaN e Inf con un error claro."""
     if isinstance(valor, bool):
         raise ValueError("El valor de temperatura no puede ser booleano.")
     try:
-        return float(valor)
+        val_float = float(valor)
     except (ValueError, TypeError):
         raise ValueError(f"Valor no numérico o inválido para temperatura: '{valor}'.")
+
+    if math.isnan(val_float) or math.isinf(val_float):
+        raise ValueError(f"Valor de temperatura no permitido (NaN o Infinito): '{valor}'.")
+
+    return val_float
 
 
 # ==========================================

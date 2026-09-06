@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 from conversor_temperatura import (
     convertir_temperatura,
     celsius_a_fahrenheit,
@@ -41,10 +41,16 @@ def test_rechazo_kelvin_menor_cero():
         convertir_temperatura(-5, "K", "C")
 
 def test_caso_borde_valor_no_numerico():
-    with pytest.raises(ValueError, match="no numérico|inválido"):
+    with pytest.raises(ValueError, match="no numérico|inválido|no permitido"):
         convertir_temperatura("abc", "C", "F")
-    with pytest.raises(ValueError, match="no numérico|inválido"):
+    with pytest.raises(ValueError, match="no numérico|inválido|no permitido"):
         celsius_a_fahrenheit("xyz")
+    with pytest.raises(ValueError, match="no permitido|NaN"):
+        convertir_temperatura(float("nan"), "C", "F")
+    with pytest.raises(ValueError, match="no permitido|Infinito"):
+        convertir_temperatura(float("inf"), "C", "F")
+    with pytest.raises(ValueError, match="booleano"):
+        convertir_temperatura(True, "C", "F")
 
 def test_caso_borde_mismo_valor_origen_destino():
     assert convertir_temperatura(25.5, "Celsius", "Celsius") == 25.5
